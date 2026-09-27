@@ -1,0 +1,1158 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Light of Love</title>
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    background: #050509;
+    font-family: Arial, sans-serif;
+}
+
+
+/* =========================
+   SCENE
+========================= */
+
+.scene {
+
+    position: relative;
+
+    width: 100%;
+    height: 100vh;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 50% 42%,
+            rgba(255, 150, 50, .04),
+            transparent 28%
+        ),
+        linear-gradient(
+            180deg,
+            #05050a,
+            #09080d
+        );
+
+    transition:
+        background 1.5s ease;
+}
+
+
+/* LIGHT ON */
+
+.scene.on {
+
+    background:
+        radial-gradient(
+            circle at 50% 43%,
+            rgba(255, 166, 67, .28),
+            transparent 34%
+        ),
+        radial-gradient(
+            circle at 50% 70%,
+            rgba(255, 93, 174, .07),
+            transparent 45%
+        ),
+        linear-gradient(
+            180deg,
+            #111018,
+            #0b090d
+        );
+}
+
+
+/* =========================
+   TOP WIRE
+========================= */
+
+.wire {
+
+    position: absolute;
+
+    left: 50%;
+    top: 0;
+
+    width: 4px;
+    height: 170px;
+
+    transform:
+        translateX(-50%);
+
+    background:
+        linear-gradient(
+            90deg,
+            #111,
+            #777,
+            #111
+        );
+
+    z-index: 5;
+}
+
+
+/* small ceiling */
+
+.ceiling {
+
+    position: absolute;
+
+    left: 50%;
+    top: 0;
+
+    width: 90px;
+    height: 12px;
+
+    transform:
+        translateX(-50%);
+
+    border-radius:
+        0 0 10px 10px;
+
+    background:
+        linear-gradient(
+            #555,
+            #151515
+        );
+
+    box-shadow:
+        0 4px 10px #000;
+
+    z-index: 6;
+}
+
+
+/* =========================
+   LAMP
+========================= */
+
+.lamp {
+
+    position: absolute;
+
+    left: 50%;
+    top: 160px;
+
+    width: 190px;
+    height: 230px;
+
+    transform:
+        translateX(-50%);
+
+    transform-origin:
+        top center;
+
+    z-index: 10;
+
+    transition:
+        transform 1.2s ease;
+}
+
+
+/* slight movement */
+
+.scene.on .lamp {
+
+    animation:
+        lampSwing 5s ease-in-out infinite;
+}
+
+
+@keyframes lampSwing {
+
+    0% {
+        transform:
+            translateX(-50%)
+            rotate(-1deg);
+    }
+
+    50% {
+        transform:
+            translateX(-50%)
+            rotate(1deg);
+    }
+
+    100% {
+        transform:
+            translateX(-50%)
+            rotate(-1deg);
+    }
+}
+
+
+/* =========================
+   SHADE
+========================= */
+
+.shade {
+
+    position: absolute;
+
+    left: 10px;
+    top: 5px;
+
+    width: 170px;
+    height: 100px;
+
+    clip-path:
+        polygon(
+            24% 0,
+            76% 0,
+            100% 100%,
+            0 100%
+        );
+
+    background:
+        linear-gradient(
+            145deg,
+            #4b4b52,
+            #1d1d22 55%,
+            #08080b
+        );
+
+    filter:
+        drop-shadow(
+            0 18px 15px rgba(0,0,0,.7)
+        );
+}
+
+
+/* shade bottom rim */
+
+.shade::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: 0;
+
+    width: 100%;
+    height: 8px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #222,
+            #777,
+            #222
+        );
+
+    border-radius: 50%;
+}
+
+
+/* =========================
+   BULB
+========================= */
+
+.bulb {
+
+    position: absolute;
+
+    left: 67px;
+    top: 82px;
+
+    width: 56px;
+    height: 76px;
+
+    border-radius:
+        50%
+        50%
+        45%
+        45%;
+
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            #777,
+            #38383d 55%,
+            #17171a
+        );
+
+    transition:
+        .7s;
+
+    z-index: 4;
+}
+
+
+/* bulb base */
+
+.bulb::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 16px;
+    bottom: -18px;
+
+    width: 24px;
+    height: 22px;
+
+    border-radius: 3px;
+
+    background:
+        repeating-linear-gradient(
+            0deg,
+            #222 0 4px,
+            #555 4px 6px
+        );
+}
+
+
+/* ON BULB */
+
+.scene.on .bulb {
+
+    background:
+        radial-gradient(
+            circle at 35% 25%,
+            #fff,
+            #fff3c5 35%,
+            #ffc15a 70%,
+            #ff8c20
+        );
+
+    box-shadow:
+
+        0 0 12px white,
+
+        0 0 30px #ffd36b,
+
+        0 0 65px #ffae3b,
+
+        0 0 120px #ff8b20,
+
+        0 0 200px rgba(255,135,30,.55);
+}
+
+
+/* =========================
+   LIGHT HALO
+========================= */
+
+.halo {
+
+    position: absolute;
+
+    left: 50%;
+    top: 205px;
+
+    width: 650px;
+    height: 650px;
+
+    transform:
+        translateX(-50%);
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,185,80,.25),
+            rgba(255,155,45,.10) 30%,
+            transparent 68%
+        );
+
+    opacity: 0;
+
+    transition:
+        opacity 1.2s ease;
+
+    pointer-events: none;
+
+    z-index: 1;
+}
+
+.scene.on .halo {
+    opacity: 1;
+}
+
+
+/* =========================
+   FLOOR LIGHT
+========================= */
+
+.floor-light {
+
+    position: absolute;
+
+    left: 50%;
+    bottom: -170px;
+
+    width: 800px;
+    height: 360px;
+
+    transform:
+        translateX(-50%);
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            ellipse,
+            rgba(255,158,50,.18),
+            transparent 65%
+        );
+
+    opacity: 0;
+
+    transition:
+        opacity 1.5s;
+
+    pointer-events: none;
+}
+
+.scene.on .floor-light {
+    opacity: 1;
+}
+
+
+/* =========================
+   PULL STRING
+========================= */
+
+.pull-area {
+
+    position: absolute;
+
+    left: 50%;
+    top: 335px;
+
+    width: 120px;
+    height: 250px;
+
+    transform:
+        translateX(160px);
+
+    z-index: 20;
+}
+
+
+.pull-line {
+
+    position: absolute;
+
+    left: 50%;
+
+    top: 0;
+
+    width: 3px;
+    height: 150px;
+
+    transform:
+        translateX(-50%);
+
+    background:
+        linear-gradient(
+            90deg,
+            #333,
+            #aaa,
+            #333
+        );
+
+    transition:
+        .35s;
+}
+
+
+.pull-ball {
+
+    position: absolute;
+
+    left: 50%;
+
+    top: 145px;
+
+    width: 32px;
+    height: 42px;
+
+    transform:
+        translateX(-50%);
+
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    background:
+        radial-gradient(
+            circle at 30% 25%,
+            white,
+            #ffc45a 30%,
+            #e27a17 70%,
+            #843800
+        );
+
+    box-shadow:
+        0 0 12px rgba(255,160,60,.5),
+
+        inset 0 -7px 10px
+        rgba(0,0,0,.25);
+
+    transition:
+        transform .25s;
+}
+
+.pull-ball:hover {
+
+    transform:
+        translateX(-50%)
+        scale(1.15);
+
+    box-shadow:
+        0 0 25px
+        rgba(255,170,70,.8);
+}
+
+.pull-ball.pulling {
+
+    transform:
+        translateX(-50%)
+        translateY(45px);
+}
+
+
+/* =========================
+   LOVE TEXT
+========================= */
+
+.love {
+
+    position: absolute;
+
+    left: 50%;
+    top: 62%;
+
+    transform:
+        translate(-50%, 30px)
+        scale(.7);
+
+    white-space: nowrap;
+
+    font-size:
+        clamp(
+            42px,
+            8vw,
+            110px
+        );
+
+    font-weight: 900;
+
+    letter-spacing:
+        clamp(
+            3px,
+            1vw,
+            12px
+        );
+
+    color: #ff6db6;
+
+    opacity: 0;
+
+    transition:
+        opacity 1.2s ease,
+        transform 1.2s ease;
+
+    text-shadow:
+        0 0 10px #ff5cad,
+        0 0 30px #ff4ca5,
+        0 0 70px rgba(255,40,150,.6);
+
+    z-index: 15;
+}
+
+.scene.on .love {
+
+    opacity: 1;
+
+    transform:
+        translate(-50%, 0)
+        scale(1);
+}
+
+
+/* =========================
+   PARTICLES
+========================= */
+
+.particles {
+
+    position: absolute;
+
+    inset: 0;
+
+    overflow: hidden;
+
+    pointer-events: none;
+
+    z-index: 12;
+}
+
+
+.particle {
+
+    position: absolute;
+
+    width: 4px;
+    height: 4px;
+
+    border-radius: 50%;
+
+    background: #ffd98a;
+
+    box-shadow:
+        0 0 8px #ffb84c,
+        0 0 18px #ff8e25;
+
+    opacity: 0;
+
+    animation:
+        particleUp
+        4s linear forwards;
+}
+
+
+@keyframes particleUp {
+
+    0% {
+
+        opacity: 0;
+
+        transform:
+            translateY(0)
+            scale(.2);
+    }
+
+    15% {
+
+        opacity: 1;
+
+    }
+
+    80% {
+
+        opacity: .7;
+
+    }
+
+    100% {
+
+        opacity: 0;
+
+        transform:
+            translate(
+                var(--x),
+                -400px
+            )
+            scale(1.3);
+    }
+}
+
+
+/* =========================
+   SIDE TEXT
+========================= */
+
+.message {
+
+    position: absolute;
+
+    left: 7%;
+    top: 43%;
+
+    color: #777;
+
+    font-size: 12px;
+
+    letter-spacing: 3px;
+
+    line-height: 1.8;
+
+    transition:
+        color .8s;
+}
+
+.scene.on .message {
+    color: #aaa;
+}
+
+
+/* =========================
+   BOTTOM
+========================= */
+
+.bottom {
+
+    position: absolute;
+
+    left: 50%;
+    bottom: 5%;
+
+    transform:
+        translateX(-50%);
+
+    color: #444;
+
+    font-size: 10px;
+
+    letter-spacing: 6px;
+
+    white-space: nowrap;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:700px) {
+
+    .lamp {
+
+        top: 130px;
+
+        transform:
+            translateX(-50%)
+            scale(.75);
+    }
+
+    .scene.on .lamp {
+
+        animation:
+            lampSwingMobile
+            5s ease-in-out infinite;
+    }
+
+    @keyframes lampSwingMobile {
+
+        0% {
+            transform:
+                translateX(-50%)
+                scale(.75)
+                rotate(-1deg);
+        }
+
+        50% {
+            transform:
+                translateX(-50%)
+                scale(.75)
+                rotate(1deg);
+        }
+
+        100% {
+            transform:
+                translateX(-50%)
+                scale(.75)
+                rotate(-1deg);
+        }
+    }
+
+    .pull-area {
+
+        transform:
+            translateX(100px);
+
+        top: 320px;
+    }
+
+    .message {
+
+        left: 5%;
+        top: 48%;
+
+        font-size: 9px;
+    }
+
+    .love {
+
+        top: 66%;
+
+        font-size: 34px;
+
+        letter-spacing: 3px;
+    }
+
+    .halo {
+
+        width: 500px;
+        height: 500px;
+    }
+
+    .bottom {
+
+        font-size: 7px;
+        letter-spacing: 3px;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+<div class="scene" id="scene">
+
+
+    <!-- CEILING -->
+
+    <div class="ceiling"></div>
+
+
+    <!-- WIRE -->
+
+    <div class="wire"></div>
+
+
+    <!-- LIGHT HALO -->
+
+    <div class="halo"></div>
+
+
+    <!-- FLOOR LIGHT -->
+
+    <div class="floor-light"></div>
+
+
+    <!-- LAMP -->
+
+    <div class="lamp">
+
+        <div class="shade"></div>
+
+        <div class="bulb"></div>
+
+    </div>
+
+
+    <!-- PULL STRING -->
+
+    <div class="pull-area">
+
+        <div
+            class="pull-line"
+            id="pullLine">
+        </div>
+
+        <div
+            class="pull-ball"
+            id="pullBall">
+        </div>
+
+    </div>
+
+
+    <!-- PARTICLES -->
+
+    <div
+        class="particles"
+        id="particles">
+    </div>
+
+
+    <!-- SIDE MESSAGE -->
+
+    <div
+        class="message"
+        id="message">
+
+        PULL THE STRING<br>
+        AND SEE WHAT<br>
+        HAPPENS
+
+    </div>
+
+
+    <!-- LOVE -->
+
+    <div class="love">
+
+        I LOVE YOU
+
+    </div>
+
+
+    <!-- BOTTOM -->
+
+    <div class="bottom">
+
+        A LITTLE LIGHT FOR YOU
+
+    </div>
+
+</div>
+
+
+<script>
+
+const scene =
+    document.getElementById("scene");
+
+const pullBall =
+    document.getElementById("pullBall");
+
+const pullLine =
+    document.getElementById("pullLine");
+
+const message =
+    document.getElementById("message");
+
+const particles =
+    document.getElementById("particles");
+
+
+let isOn = false;
+
+let animating = false;
+
+
+/* =========================
+   PULL STRING
+========================= */
+
+pullBall.addEventListener(
+    "click",
+    function() {
+
+        if (animating) return;
+
+        animating = true;
+
+
+        /* pull animation */
+
+        pullBall.classList.add(
+            "pulling"
+        );
+
+        pullLine.style.height =
+            "195px";
+
+
+        setTimeout(
+            function() {
+
+                isOn = !isOn;
+
+                scene.classList.toggle(
+                    "on",
+                    isOn
+                );
+
+
+                if (isOn) {
+
+                    message.innerHTML =
+                        "THE LIGHT IS ON<br>LOOK CLOSER";
+
+                    createParticles();
+
+                } else {
+
+                    message.innerHTML =
+                        "PULL THE STRING<br>AND SEE WHAT<br>HAPPENS";
+
+                }
+
+            },
+            300
+        );
+
+
+        setTimeout(
+            function() {
+
+                pullBall.classList.remove(
+                    "pulling"
+                );
+
+                pullLine.style.height =
+                    "150px";
+
+                animating = false;
+
+            },
+            700
+        );
+
+    }
+);
+
+
+/* =========================
+   PARTICLES
+========================= */
+
+function createParticles() {
+
+    for (
+        let i = 0;
+        i < 70;
+        i++
+    ) {
+
+        setTimeout(
+            function() {
+
+                if (!isOn) return;
+
+
+                const p =
+                    document.createElement(
+                        "div"
+                    );
+
+                p.className =
+                    "particle";
+
+
+                p.style.left =
+                    (
+                        30 +
+                        Math.random() * 40
+                    ) + "%";
+
+
+                p.style.top =
+                    (
+                        38 +
+                        Math.random() * 20
+                    ) + "%";
+
+
+                p.style.setProperty(
+                    "--x",
+                    (
+                        (Math.random() - .5) *
+                        300
+                    ) + "px"
+                );
+
+
+                p.style.animationDuration =
+                    (
+                        3 +
+                        Math.random() * 3
+                    ) + "s";
+
+
+                particles.appendChild(p);
+
+
+                setTimeout(
+                    function() {
+
+                        p.remove();
+
+                    },
+                    6500
+                );
+
+            },
+            i * 70
+        );
+    }
+
+}
+
+
+/* =========================
+   CONTINUOUS PARTICLES
+========================= */
+
+setInterval(
+    function() {
+
+        if (isOn) {
+
+            createSmallParticle();
+
+        }
+
+    },
+    350
+);
+
+
+function createSmallParticle() {
+
+    const p =
+        document.createElement(
+            "div"
+        );
+
+    p.className =
+        "particle";
+
+
+    p.style.left =
+        (
+            35 +
+            Math.random() * 30
+        ) + "%";
+
+
+    p.style.top =
+        (
+            40 +
+            Math.random() * 15
+        ) + "%";
+
+
+    p.style.setProperty(
+        "--x",
+        (
+            (Math.random() - .5) *
+            250
+        ) + "px"
+    );
+
+
+    p.style.animationDuration =
+        (
+            3 +
+            Math.random() * 2
+        ) + "s";
+
+
+    particles.appendChild(p);
+
+
+    setTimeout(
+        function() {
+
+            p.remove();
+
+        },
+        5500
+    );
+
+}
+
+</script>
+
+</body>
+</html>
+```
